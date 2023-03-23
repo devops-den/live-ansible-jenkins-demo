@@ -2,9 +2,13 @@ pipeline {
     agent any
     
     stages {
-        stage('Example') {
+        stage('Invoke ansible playbook') {
             steps {
-                echo 'Hello World'
+                ansiblePlaybook(
+                    playbook: 'testmod.yml',
+                    inventory: 'inventory.yml',
+                    credentialsId: 'ansible-connect'
+                )
             }
         }
     }
