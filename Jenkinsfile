@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    options {
+        ansiColor('xterm')
+    }
     
     stages {
         stage('Invoke ansible playbook') {
@@ -7,7 +10,8 @@ pipeline {
                 ansiblePlaybook(
                     playbook: 'testmod.yml',
                     inventory: 'inventory.yml',
-                    credentialsId: 'ansible-connect'
+                    credentialsId: 'ansible-connect',
+                    colorized: true
                 )
             }
         }
